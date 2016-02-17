@@ -12,7 +12,9 @@ export function initialize() {
     throw new Ember.Error('StripeService: Missing Stripe key, please set `ENV.stripe.publishableKey` in config.environment.js');
   }
 
-  Stripe.setPublishableKey(config.stripe.publishableKey);
+  if (window.Stripe) {
+    Stripe.setPublishableKey(config.stripe.publishableKey);
+  }
 }
 
 export default {
